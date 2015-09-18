@@ -32,7 +32,7 @@
 
     <name>OSIAM stress tests</name>
     <description>The tests to stress OSIAMs server with scheduled connector4java requests</description>
-    <url>https://github.com/osiam/test-suites/tree/master/stress-tests</url>
+    <url>https://github.com/osiam/stress-tests</url>
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>

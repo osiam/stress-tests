@@ -1,0 +1,3 @@
+dependencies:
+  override:
+    - mvn -U dependency:resolve generate-resources
