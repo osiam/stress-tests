@@ -62,7 +62,7 @@
         <java.version>1.7</java.version>
 
         <version.quartz>2.2.3</version.quartz>
-        <version.osiam.connector4java>1.8-SNAPSHOT</version.osiam.connector4java>
+        <version.osiam.connector4java>latest-SNAPSHOT</version.osiam.connector4java>
     </properties>
 
     <dependencies>
@@ -99,15 +99,8 @@
 
     <repositories>
         <repository>
-            <id>osiam releases repo</id>
-            <url>https://maven-repo.evolvis.org/releases</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>osiam snapshots repo</id>
-            <url>https://maven-repo.evolvis.org/snapshots</url>
+            <id>osiam-snapshots</id>
+            <url>https://oss.jfrog.org/artifactory/repo/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>

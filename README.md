@@ -24,14 +24,25 @@ Every 12 h (7 p.m, 7 a.m) the memory usage is collected and saved.
 
 The OSIAM Stress Tests are written in Java and using the [quartz scheduler]
 (http://quartz-scheduler.org).
-The memory usage is collected by dropwizard metrics in the OSIAM server and
-retrieved via HTTP.
+The memory usage is collected via Spring Boots' Actuator in OSIAM.
 
 ## Setup
 
-After completing the [Installation](../INSTALLATION.md), you have to import an
-extension which will be need to run these tests. Simple run the [sql file]
-(https://github.com/osiam/stress-tests/blob/master/src/main/sql/extension_registration.sql).
+After completing the [Installation](../INSTALLATION.md), you have to setup an
+extension which will be need to run these tests. You need to add the following
+lines to the `osiam.yaml` in the osiam home folder:
+
+```
+  scim:
+    extensions:
+      - urn: urn:org.osiam:scim:extensions:stress-tests
+        fields:
+          - name: gender
+            type: STRING
+          - name: age
+            type: INTEGER
+```
+
 
 ## How to run the stress tests
 

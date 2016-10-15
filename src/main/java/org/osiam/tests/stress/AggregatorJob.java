@@ -89,9 +89,9 @@ public class AggregatorJob implements Job {
             String dateOut = dateFormatter.format(new Date());
             System.out.println(dateOut + "; Retrieving metrics data");
 
-            WebTarget targetEndpoint = client.target(OsiamContext.getInstance().getResourceEndpointAddress());
+            WebTarget targetEndpoint = client.target(OsiamContext.getInstance().getOsiamEndpoint());
 
-            Response response = targetEndpoint.path("/Metrics")
+            Response response = targetEndpoint.path("/monitor/metrics")
                     .request(MediaType.APPLICATION_JSON)
                     .header("Authorization", BEARER + accessToken.getToken())
                     .header("Accept", ContentType.APPLICATION_JSON.getMimeType())
@@ -106,7 +106,7 @@ public class AggregatorJob implements Job {
             int mb = 1024 * 1024;
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(content);
-            String memoryUsage = "" + (rootNode.get("gauges").get("jvm.memory.total.used").get("value").asInt() / mb);
+            String memoryUsage = "" + (rootNode.get("mem").asInt() / mb);
             String totalUser = getTotalUsers();
 
             DataStorage.storeData(memoryUsage, totalUser);

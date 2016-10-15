@@ -44,7 +44,7 @@ public class StressRequester {
 
         try {
             if (args.length > 0) {
-                OsiamContext.getInstance().setResourcesEndpoint(args[0]);
+                OsiamContext.getInstance().setOsiamEndpoint(args[0]);
             } else {
                 LOG.error("You need to set the root endpoint of your osiam server e.g. http://localhost:8080");
                 return;
