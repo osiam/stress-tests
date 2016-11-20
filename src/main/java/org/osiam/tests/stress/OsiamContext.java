@@ -34,8 +34,7 @@ import org.osiam.resources.scim.User;
 
 public class OsiamContext {
     private static OsiamContext contextSingelton = null;
-    private static String AUTH_ENDPOINT_ADDRESS;
-    private static String RESOURCE_ENDPOINT_ADDRESS;
+    private static String OSIAM_ENDPOINT;
     private static final String CLIENT_ID = "example-client";
     private static final String CLIENT_SECRET = "secret";
 
@@ -57,11 +56,10 @@ public class OsiamContext {
     public OsiamConnector getConnector(String key) {
         OsiamConnector osiamConnector = connectors.get(key);
         if (osiamConnector == null) {
-            OsiamConnector.Builder oConBuilder = new OsiamConnector.Builder().
-                    setAuthServerEndpoint(AUTH_ENDPOINT_ADDRESS).
-                    setResourceServerEndpoint(RESOURCE_ENDPOINT_ADDRESS).
-                    setClientId(CLIENT_ID).
-                    setClientSecret(CLIENT_SECRET);
+            OsiamConnector.Builder oConBuilder = new OsiamConnector.Builder()
+                    .withEndpoint(OSIAM_ENDPOINT)
+                    .setClientId(CLIENT_ID)
+                    .setClientSecret(CLIENT_SECRET);
             osiamConnector = oConBuilder.build();
             connectors.put(key, osiamConnector);
         }
@@ -79,9 +77,8 @@ public class OsiamContext {
         this.users = users;
     }
 
-    public void setResourcesEndpoint(String resourceEndpoint) {
-        AUTH_ENDPOINT_ADDRESS = resourceEndpoint + "/osiam-auth-server";
-        RESOURCE_ENDPOINT_ADDRESS = resourceEndpoint + "/osiam-resource-server";
+    public void setOsiamEndpoint(String osiamEndpoint) {
+        OSIAM_ENDPOINT = osiamEndpoint;
     }
 
     public synchronized String retrieveSingleUserId() {
@@ -97,7 +94,7 @@ public class OsiamContext {
         return userId;
     }
 
-    public String getResourceEndpointAddress() {
-        return RESOURCE_ENDPOINT_ADDRESS;
+    public String getOsiamEndpoint() {
+        return OSIAM_ENDPOINT;
     }
 }

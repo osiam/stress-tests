@@ -71,9 +71,7 @@ public class RequesterJob implements Job {
                 searchUser();
             } else if (i > 18 && i <= 26) {
                 getUser();
-            } else if (i > 26 && i <= 28) {
-                updateUser();
-            } else if (i > 28 && i <= 29) {
+            } else if (i > 26 && i <= 29) {
                 replaceUser();
             } else if (i == 30) {
                 deleteUser();
@@ -99,16 +97,6 @@ public class RequesterJob implements Job {
 
     private int getRandomNumber() {
         return (int) (Math.random() * 99 + 1);
-    }
-
-    private void updateUser() {
-        logMessage("Updating a User");
-        String userId = OsiamContext.getInstance().retrieveSingleUserId();
-        logMessage("try to update user with the id " + userId);
-        if (!Strings.isNullOrEmpty(userId)) {
-            UpdateUser updateUser = new UpdateUser.Builder().updateExternalId(UUID.randomUUID().toString()).build();
-            osiamConnector.updateUser(userId, updateUser, accessToken);
-        }
     }
 
     private void replaceUser() {
